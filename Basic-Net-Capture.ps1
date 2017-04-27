@@ -15,14 +15,15 @@
 # 
 #Create new session redirecting ETL with timestamp and maximum 512MB of size
 $timestamp = Get-Date -f yyyy-MM-dd_HH-mm-ss
-New-NetEventSession -Name session1 -LocalFilePath c:\$env:computername-netcap-$timestamp.etl  -MaxFileSize 512
+New-NetEventSession -Name Session1 -LocalFilePath c:\$env:computername-netcap-$timestamp.etl  -MaxFileSize 512
 #Adding provider "Microsoft-Windows-NDIS-PacketCapture" provider {2ED6006E-4729-4609-B423-3EE7BCD678EF} similar to netsh trace capture=yes 
-Add-NetEventProvider -Name "{2ED6006E-4729-4609-B423-3EE7BCD678EF}" -SessionName session1
+Add-NetEventProvider -Name "{2ED6006E-4729-4609-B423-3EE7BCD678EF}" -SessionName Session1
+Add-NetEventProvider -Name "Microsoft-Windows-NDIS-PacketCapture" -SessionName Session1
 #Start a Capture Session
-Start-NetEventSession -Name session1 
+Start-NetEventSession -Name Session1 
 #Check Status of capture
 Get-NetEventSession
 #Stop a Capture Session 
-Stop-NetEventSession -Name session1
+Stop-NetEventSession -Name Session1
 #Remove Capture Session
-Remove-NetEventSession -Name session1 
+Remove-NetEventSession -Name Session1 
