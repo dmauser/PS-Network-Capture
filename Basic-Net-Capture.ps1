@@ -18,7 +18,6 @@ $timestamp = Get-Date -f yyyy-MM-dd_HH-mm-ss
 New-NetEventSession -Name Session1 -LocalFilePath c:\$env:computername-netcap-$timestamp.etl  -MaxFileSize 512
 #Adding provider "Microsoft-Windows-NDIS-PacketCapture" provider {2ED6006E-4729-4609-B423-3EE7BCD678EF} similar to netsh trace capture=yes 
 Add-NetEventProvider -Name "{2ED6006E-4729-4609-B423-3EE7BCD678EF}" -SessionName Session1
-Add-NetEventProvider -Name "Microsoft-Windows-NDIS-PacketCapture" -SessionName Session1
 #Start a Capture Session
 Start-NetEventSession -Name Session1 
 #Check Status of capture
